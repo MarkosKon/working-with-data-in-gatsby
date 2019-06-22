@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter",
+  "name": "gatsby-working-with-data",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Working with data in Gatsby",
   "author": "Markos Konstantopoulos <markoskonstanto@hotmail.com>",
   "version": "0.2.0",
   "scripts": {
