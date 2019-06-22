@@ -6,14 +6,21 @@ import { Heading1 } from '../components/Variants';
 import Layout from '../layouts/Layout';
 import SEO from '../components/SEO';
 import TourCard from '../components/TourCard';
-import tourData from '../data/tours';
 
 // eslint-disable-next-line react/prop-types
 const IndexPage = ({ data }) => {
-  const tours = data.allFile.edges.map(({ node }) => ({
-    image: node.childImageSharp.fluid,
-    originalName: node.childImageSharp.fluid.originalName,
-  }));
+  const tours = data.allToursJson.edges.map(({ node }) => {
+    const {
+      description, price, title, url, image,
+    } = node;
+    return {
+      description,
+      price,
+      title,
+      url,
+      image: image.childImageSharp.fluid,
+    };
+  });
   return (
     <Layout>
       <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
@@ -22,20 +29,17 @@ const IndexPage = ({ data }) => {
           Available Tours
         </Heading1>
         <Flex flexWrap="wrap" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          {tourData.map(({
-            title, price, description, url,
-          }) => {
-            const regExp = new RegExp(title, 'i');
-            return (
-              <TourCard
-                title={title}
-                fluidImage={tours.find(({ originalName }) => originalName.match(regExp)).image}
-                price={price}
-                description={description}
-                url={url}
-              />
-            );
-          })}
+          {tours.map(({
+            title, price, description, url, image,
+          }) => (
+            <TourCard
+              title={title}
+              fluidImage={image}
+              price={price}
+              description={description}
+              url={url}
+            />
+          ))}
         </Flex>
       </Box>
     </Layout>
@@ -44,13 +48,18 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query TourQuery {
-    allFile(filter: { relativePath: { regex: "/tours/" } }) {
+    allToursJson {
       edges {
         node {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid_tracedSVG
-              originalName
+          description
+          price
+          title
+          url
+          image {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid_tracedSVG
+              }
             }
           }
         }
