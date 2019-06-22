@@ -33,6 +33,7 @@ const IndexPage = ({ data }) => {
             title, price, description, url, image,
           }) => (
             <TourCard
+              key={title}
               title={title}
               fluidImage={image}
               price={price}
