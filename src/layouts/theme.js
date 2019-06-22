@@ -5,6 +5,11 @@ const orangered = 'orangered';
 const lightGray = '#e6e6e6';
 const white = '#fff';
 
+const text = black;
+const bg = white;
+const primary = 'rebeccapurple';
+const accent = orangered;
+
 const lineHeights = {
   normal: 1,
   wide: 1.2,
@@ -42,5 +47,9 @@ export default {
     orangered,
     lightGray,
     white,
+    text,
+    bg,
+    primary,
+    accent,
   },
 };

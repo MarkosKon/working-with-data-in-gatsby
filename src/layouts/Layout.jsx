@@ -53,9 +53,7 @@ const Layout = ({ children }) => {
       >
         <Link to="/">Home</Link>
       </Navbar>
-      <Box as="main" width={[1, '80%']} m="auto" px={[3, 5]}>
-        {children}
-      </Box>
+      <Box as="main">{children}</Box>
     </>
   );
 };
