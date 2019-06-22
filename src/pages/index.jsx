@@ -9,15 +9,15 @@ import TourCard from '../components/TourCard';
 
 // eslint-disable-next-line react/prop-types
 const IndexPage = ({ data }) => {
-  const tours = data.allToursJson.edges.map(({ node }) => {
+  const tours = data.allMdx.edges.map(({ node }) => {
     const {
-      description, price, title, url, image,
-    } = node;
+      description, price, title, image,
+    } = node.frontmatter;
     return {
       description,
       price,
       title,
-      url,
+      url: node.fields.slug,
       image: image.childImageSharp.fluid,
     };
   });
@@ -48,18 +48,22 @@ const IndexPage = ({ data }) => {
 };
 
 export const query = graphql`
-  query TourQuery {
-    allToursJson {
+  query Tours {
+    allMdx(filter: { frontmatter: { type: { eq: "tour" }, published: { eq: true } } }) {
       edges {
         node {
-          description
-          price
-          title
-          url
-          image {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid_tracedSVG
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            price
+            description
+            image {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
           }

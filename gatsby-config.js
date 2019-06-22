@@ -8,13 +8,6 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-json',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/data`,
-      },
-    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -24,6 +17,52 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'tours',
+        path: `${__dirname}/content/tours`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'destinations',
+        path: `${__dirname}/content/destinations`,
+      },
+    },
+    {
+      resolve: 'gatsby-mdx',
+      options: {
+        extensions: ['.mdx', '.md'],
+        defaultLayouts: {
+          default: `${__dirname}/src/components/layouts/Layout.jsx`,
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1920,
+              linkImagesToOriginal: false,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-smartypants',
+            options: {
+              dashes: 'oldschool',
+            },
+          },
+          { resolve: 'gatsby-remark-copy-linked-files', options: {} },
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'noopener',
+            },
+          },
+        ],
+      },
+    },
     'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-webpack-bundle-analyzer',
