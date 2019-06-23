@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 import BgImage from '../components/BgImage';
-import { Centered } from '../components/Primitives';
+import { Centered, Box } from '../components/Primitives';
 import { Heading1 } from '../components/Variants';
 import Layout from '../layouts/Layout';
 
@@ -21,7 +21,9 @@ const TourTemplate = ({ data: { mdx } }) => {
           <Heading1 color="bg">{mdx.frontmatter.title}</Heading1>
         </Centered>
       </BgImage>
-      <MDXRenderer tourImage={tourImage}>{mdx.code.body}</MDXRenderer>
+      <Box style={{ maxWidth: '1200px' }} margin="0 auto">
+        <MDXRenderer tourImage={tourImage}>{mdx.code.body}</MDXRenderer>
+      </Box>
     </Layout>
   );
 };
