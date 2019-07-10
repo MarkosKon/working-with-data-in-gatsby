@@ -36,7 +36,7 @@ module.exports = {
       options: {
         extensions: ['.mdx', '.md'],
         defaultLayouts: {
-          default: `${__dirname}/src/components/layouts/Layout.jsx`,
+          default: `${__dirname}/src/layouts/Layout.jsx`,
         },
         gatsbyRemarkPlugins: [
           {
