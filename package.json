@@ -44,7 +44,7 @@
     "accessible-navbar": "^0.0.8",
     "babel-plugin-styled-components": "^1.10.0",
     "focus-trap-react": "^6.0.0",
-    "gatsby": "^2.0.76",
+    "gatsby": "^4.25.7",
     "gatsby-image": "^2.0.20",
     "gatsby-mdx": "^0.6.3",
     "gatsby-plugin-manifest": "^2.0.9",
